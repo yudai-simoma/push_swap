@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:11:00 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/06 19:14:12 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/06 21:50:30 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int	main(void)
 {
-	char *str = "5 2 1 4 7 3 8 6";
+	t_stack stack_;
+	char **str = {"5", "2", "1", "4", "7", "3", "8", "6"};
+	stack_.before_sort = str;
 }
