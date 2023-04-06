@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 19:32:35 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/05 19:34:32 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/06 18:34:33 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	create(int *num, int *num_sort)
 	num[3] = -43;
 	num[4] = 342;
 	num[5] = 143;
-	num[6] = 534;
+	num[6] = 534; 
 	num_sort[0] = 32;
 	num_sort[1] = 435;
 	num_sort[2] = -4;
