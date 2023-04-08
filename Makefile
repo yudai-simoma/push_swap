@@ -6,19 +6,19 @@
 #    By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 18:42:11 by yshimoma          #+#    #+#              #
-#    Updated: 2023/04/06 18:59:01 by yshimoma         ###   ########.fr        #
+#    Updated: 2023/04/08 20:25:38 by yshimoma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 SRCS_DIR = ./src
-SRCS = *.c
+SRCS = main.c error.c error_utils.c quick_sort.c utils.c
 vpath %.c ${SRCS_DIR}
 OBJ_DIR = ./obj
 OBJS = ${addprefix $(OBJ_DIR)/, $(SRCS:.c=.o)}
 INCLUDE = ./header
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 AR = ar
 AR_FLAGS = rcs
 RM = rm -rf
