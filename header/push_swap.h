@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:09:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/08 16:07:18 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/09 15:52:09 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,22 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-typedef struct s_sort {
-	int		*num;
-	size_t	*num2;
-	size_t	num3;
-}	t_sort;
-
-struct Deque {
-	char	**before_sort;
-    t_sort	*data;  // 要素を格納する配列
-    int head;  // 先頭を指すインデックス
-    int tail;   // 末尾を指すインデックス
-
-    int size;   // 現在の要素数
-    int capacity;   // 格納できる最大要素数
-};
-
 //配列
-typedef struct s_stack {
-	char	**before_sort;
-	int		tail;
-	int		head;
-	t_sort	*data;
-	size_t	size;
-}	t_stack;
+typedef struct s_ps_stack {
+	int		*param_array;
+	int		*sort_array;
+	int		*cmprsd_arr_rv;
+	size_t	array_size;
+	size_t	ab_flg;
+}	t_ps_stack;
 
 //utils.c
 char	*ft_pram_join(char **pram_str, size_t pram_len);
 int		*ft_set_arr_num(char **check_str);
 void	ft_free_str(char **str);
+void	ft_reverse_coordinate_compression(t_ps_stack *ab_stack);
 //error.c
-int		*ft_iserror(int argc, char **argv);
+void	ft_iserror(int argc, char **argv);
 //error_utils.c
 int		ft_isempty_pram(int argc, char **argv);
 int		ft_isnot_num_value(int argc, char **argv);
@@ -57,8 +42,25 @@ int		ft_is_sign_error(char *check_str);
 int		ft_is_duplicate(int *check_arr_num);
 //quick_sort.c
 void	quick_sort(int *sort_num, size_t point, size_t standard);
-void	ft_coordinate_compression(int *num, int *num_sort,
-			int *num_order, size_t num_len);
+//stack_utils.c
+size_t	ft_stack_a_size(t_ps_stack *ab_stack);
+size_t	ft_stack_b_size(t_ps_stack *ab_stack);
+void	ft_swap(int *a, int *b);
+//swap.c
+void	ft_swap_a(t_ps_stack *ab_stack);
+void	ft_swap_b(t_ps_stack *ab_stack);
+void	ft_swap_ab(t_ps_stack *ab_stack);
+//push.c
+void	ft_push_a(t_ps_stack *ab_stack);
+void	ft_push_b(t_ps_stack *ab_stack);
+//rotate.c
+void	ft_rotate_a(t_ps_stack *ab_stack);
+void	ft_rotate_b(t_ps_stack *ab_stack);
+void	ft_rotate_ab(t_ps_stack *ab_stack);
+//reverse_rotate.c
+void	ft_reverse_rotate_a(t_ps_stack *ab_stack);
+void	ft_reverse_rotate_b(t_ps_stack *ab_stack);
+void	ft_reverse_rotate_ab(t_ps_stack *ab_stack);
 #endif
 
 /*

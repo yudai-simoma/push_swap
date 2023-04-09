@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:34:36 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/08 12:28:21 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/09 20:13:06 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,22 @@ char	*ft_pram_join(char **pram_str, size_t pram_len)
 }
 
 //char** を int*に変換
-int	*ft_set_arr_num(char **check_str)
+int	*ft_set_arr_num(char **str)
 {
-	int		*arr_check_;
+	int		*arr_num_;
 	size_t	i_;
 
 	i_ = 0;
-	while (check_str[i_] != NULL)
+	while (str[i_] != NULL)
 		i_++;
-	arr_check_ = (int *)malloc(sizeof(int) * i_);
+	arr_num_ = (int *)malloc(sizeof(int) * i_);
 	i_ = 0;
-	while (check_str[i_] != NULL)
+	while (str[i_] != NULL)
 	{
-		arr_check_[i_] = atoi(check_str[i_]);
+		arr_num_[i_] = atoi(str[i_]);
 		i_++;
 	}
-	return (arr_check_);
+	return (arr_num_);
 }
 
 //2次元配列をfreeする
@@ -89,3 +89,35 @@ void	ft_free_str(char **str)
 	}
 	free(str);
 }
+
+//座標圧縮する関数
+void	ft_reverse_coordinate_compression(t_ps_stack *ab_stack)
+{
+	size_t	i_;
+	size_t	si_;
+	size_t	oi_;
+	size_t	malloc_size;
+
+	malloc_size = ab_stack->array_size + 1;
+	ab_stack->cmprsd_arr_rv = (int *)malloc(sizeof(int) * malloc_size);
+	//TODO:null処理をする
+	i_ = 0;
+	oi_ = malloc_size - 1;
+	while (i_ < malloc_size - 1)
+	{
+		si_ = 0;
+		while (si_ < malloc_size - 1)
+		{
+			if (ab_stack->param_array[i_] == ab_stack->sort_array[si_])
+			{
+				ab_stack->cmprsd_arr_rv[oi_] = si_;
+				oi_--;
+			}
+			si_++;
+		}
+		i_++;
+	}
+	ab_stack->cmprsd_arr_rv[oi_] = 0;
+}
+// 5,1,0,18,19,15,16,11,17,14,2,12,13,4,10,6,3,7,9,8,
+// 0,5,1,0,18,19,15,16,11,17,14,2,12,13,4,10,6,3,7,9,

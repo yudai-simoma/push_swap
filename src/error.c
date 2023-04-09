@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:26:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/08 16:43:34 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/09 10:03:07 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static void	exit_error(int err_num, char *str, char **c_str, int *num)
 	exit(0);
 }
 
-int	*ft_iserror(int argc, char **argv)
+void	ft_iserror(int argc, char **argv)
 {
 	char	*check_str_;
 	char	**check_c_;
@@ -132,7 +132,8 @@ int	*ft_iserror(int argc, char **argv)
 		exit_error(5, check_str_, check_c_, check_arr_num_);
 	free(check_str_);
 	ft_free_str(check_c_);
-	return (check_arr_num_);
+	free(check_arr_num_);
+	return ;
 }
 
 // int main(void){

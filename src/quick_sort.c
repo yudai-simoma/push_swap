@@ -6,21 +6,13 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 19:32:35 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/08 16:06:47 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/09 12:35:15 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_swap(int *a, int *b)
-{
-	int	x;
-
-	x = *a;
-	*a = *b;
-	*b = x;
-}
-
+//クイックソートでのパーティション
 static int	partition(int *sort_num, size_t point, size_t standard)
 {
 	size_t	i_;
@@ -40,6 +32,7 @@ static int	partition(int *sort_num, size_t point, size_t standard)
 	return (point);
 }
 
+//クイックソートで並べ替え
 void	quick_sort(int *sort_num, size_t point, size_t standard)
 {
 	size_t	next_p_;
@@ -52,29 +45,4 @@ void	quick_sort(int *sort_num, size_t point, size_t standard)
 		quick_sort(sort_num, 0, next_p_ - 1);
 	else
 		quick_sort(sort_num, 0, 0);
-}
-
-void	ft_coordinate_compression(int *num, int *num_sort,
-	int *num_order, size_t num_len)
-{
-	size_t	i_;
-	size_t	si_;
-	size_t	oi_;
-
-	i_ = 0;
-	oi_ = 0;
-	while (i_ < num_len)
-	{
-		si_ = 0;
-		while (si_ < num_len)
-		{
-			if (num[i_] == num_sort[si_])
-			{
-				num_order[oi_] = si_;
-				oi_++;
-			}
-			si_++;
-		}
-		i_++;
-	}
 }
