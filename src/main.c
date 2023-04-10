@@ -6,12 +6,14 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:11:00 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/09 20:24:06 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/10 21:27:17 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// スタックの中身を出力する関数
+// 検証用
 void	ft_stack_print(t_ps_stack *ab_stack_)
 {
 	size_t i = 0;
@@ -48,7 +50,14 @@ size_t	ft_array_size(int argc, char **argv)
 	size_t	i_;
 
 	join_str_ = ft_pram_join(argv, argc - 1);
+	if (join_str_ == NULL)
+		ft_put_error_exit();
 	split_c_ = ft_split(join_str_, ' ');
+	if (split_c_ == NULL)
+	{
+		free(join_str_);
+		ft_put_error_exit();
+	}
 	i_ = 0;
 	while (split_c_[i_] != NULL)
 		i_++;
@@ -64,11 +73,38 @@ int	*ft_convert_ptr(int argc, char **argv)
 	int		*ptr_num_;
 
 	join_str_ = ft_pram_join(argv, argc - 1);
+	if (join_str_ == NULL)
+		return (NULL);
 	split_c_ = ft_split(join_str_, ' ');
+	if (split_c_ == NULL)
+		return (NULL);
 	ptr_num_ = ft_set_arr_num(split_c_);
+	if (ptr_num_ == NULL)
+		return (NULL);
 	free(join_str_);
 	ft_free_str(split_c_);
 	return (ptr_num_);
+}
+
+void	ft_set_array(t_ps_stack *ab_stack, int argc, char **argv)
+{
+	ab_stack->array_size = ft_array_size(argc, argv);
+	ab_stack->param_array = ft_convert_ptr(argc, argv);
+	if (ab_stack->param_array == NULL)
+		ft_put_error_exit();
+	ab_stack->sort_array = ft_convert_ptr(argc, argv);
+	if (ab_stack->sort_array == NULL)
+	{
+		free(ab_stack->param_array);
+		ft_put_error_exit();
+	}
+	ab_stack->cmprsd_arr_rv = malloc(sizeof(int) * ab_stack->array_size + 1);
+	if (ab_stack->cmprsd_arr_rv == NULL)
+	{
+		free(ab_stack->param_array);
+		free(ab_stack->sort_array);
+		ft_put_error_exit();
+	}
 }
 
 /*
@@ -85,12 +121,9 @@ int	main(void){
 
 	ab_stack_ = (t_ps_stack){0};
 	//TODO:エラーの処理の戻り値はint*のため、構造体に格納し、座標圧縮へ行く
-	ft_iserror(argc, argv);
-	ab_stack_.param_array = ft_convert_ptr(argc, argv);
-	ab_stack_.sort_array = ft_convert_ptr(argc, argv);
-	ab_stack_.array_size = ft_array_size(argc, argv);
+	ft_error_check(argc, argv);
+	ft_set_array(&ab_stack_, argc, argv);
 	quick_sort(ab_stack_.sort_array, 0, ab_stack_.array_size - 1);
-	//freeする
 	ft_reverse_coordinate_compression(&ab_stack_);
 	// ab_stack_.ab_flg = ab_stack_.array_size;
 	ab_stack_.ab_flg = 10;
@@ -106,7 +139,6 @@ int	main(void){
 // static void destructor() {
 //     system("leaks -q push_swap");
 // }
-
 
 // int	main(void){
 // 	t_ps_stack	ab_stack;
@@ -135,23 +167,3 @@ int	main(void){
 // 	}
 // 	return (0);
 // }
-
-
-
-
-
-
-
-
-
-
-
-/*
-[5, 4, 9, 2, 4, 3,| 8 ,5 ]
- 3, 5, 4, 9, 2, 4
-a = 3
-
-
-
-
-*/

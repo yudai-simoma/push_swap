@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:09:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/09 15:52:09 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/10 21:26:58 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,17 @@ int		*ft_set_arr_num(char **check_str);
 void	ft_free_str(char **str);
 void	ft_reverse_coordinate_compression(t_ps_stack *ab_stack);
 //error.c
-void	ft_iserror(int argc, char **argv);
+void	ft_error_check(int argc, char **argv);
 //error_utils.c
 int		ft_isempty_pram(int argc, char **argv);
 int		ft_isnot_num_value(int argc, char **argv);
 int		ft_isnot_integer(char *check_str);
 int		ft_is_sign_error(char *check_str);
 int		ft_is_duplicate(int *check_arr_num);
+//put_error.c
+void	ft_error_all_free(char *check_str, char **check_c, int *check_arr_num);
+void	ft_exit_error(char *str, char **c_str, int *num);
+void	ft_put_error_exit(void);
 //quick_sort.c
 void	quick_sort(int *sort_num, size_t point, size_t standard);
 //stack_utils.c

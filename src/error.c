@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:26:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/09 10:03:07 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/10 21:26:15 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,65 +74,32 @@ static int	ft_is_out_scope(char **check_str)
 	return (false);
 }
 
-//エラー内容によって出力内容を変える
-static void	exit_error(int err_num, char *str, char **c_str, int *num)
-{
-	ft_printf("error\n");
-	if (err_num == 1)
-	{
-		ft_printf("引数が空文字です\n");
-		exit (0);
-	}
-	free(str);
-	if (err_num == 2)
-		ft_printf("整数値でないです\n");
-	if (err_num == 3)
-		ft_printf("++, --のエラー処理の対応、" "+" "のエラー処理\n");
-	if (err_num == 4)
-	{
-		ft_free_str(c_str);
-		ft_printf("intの範囲内でない\n");
-	}
-	if (err_num == 5)
-	{
-		ft_free_str(c_str);
-		free(num);
-		ft_printf("重複している\n");
-	}
-	exit(0);
-}
-
-void	ft_iserror(int argc, char **argv)
+void	ft_error_check(int argc, char **argv)
 {
 	char	*check_str_;
 	char	**check_c_;
 	int		*check_arr_num_;
 
-	//TODO:引数が無いでクラッシュしないかを確認
-	//引数がないもしくは引数が全て空か
 	if (argc == 1 || ft_isempty_pram(argc, argv))
 		exit (0);
-	// 引数が空文字でないか
 	if (ft_isnot_num_value(argc, argv))
-		exit_error(1, NULL, NULL, NULL);
+		ft_exit_error(NULL, NULL, NULL);
 	check_str_ = ft_pram_join(argv, argc - 1);
-	//整数でない
-	if (ft_isnot_integer(check_str_))
-		exit_error(2, check_str_, NULL, NULL);
-	// ++, --のエラー処理の対応、空欄+空欄のエラー処理
-	if (ft_is_sign_error(check_str_))
-		exit_error(3, check_str_, NULL, NULL);
+	if (check_str_ == NULL)
+		ft_exit_error(NULL, NULL, NULL);
+	if (ft_isnot_integer(check_str_) || ft_is_sign_error(check_str_))
+		ft_exit_error(check_str_, NULL, NULL);
 	check_c_ = ft_split(check_str_, ' ');
-	//intの範囲内でない
+	if (check_c_ == NULL)
+		ft_exit_error(check_str_, NULL, NULL);
 	if (ft_is_out_scope(check_c_))
-		exit_error(4, check_str_, check_c_, NULL);
+		ft_exit_error(check_str_, check_c_, NULL);
 	check_arr_num_ = ft_set_arr_num(check_c_);
-	// 重複している
+	if (check_arr_num_ == NULL)
+		ft_exit_error(check_str_, check_c_, NULL);
 	if (ft_is_duplicate(check_arr_num_))
-		exit_error(5, check_str_, check_c_, check_arr_num_);
-	free(check_str_);
-	ft_free_str(check_c_);
-	free(check_arr_num_);
+		ft_exit_error(check_str_, check_c_, check_arr_num_);
+	ft_error_all_free(check_str_, check_c_, check_arr_num_);
 	return ;
 }
 

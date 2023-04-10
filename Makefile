@@ -6,14 +6,15 @@
 #    By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 18:42:11 by yshimoma          #+#    #+#              #
-#    Updated: 2023/04/09 12:34:29 by yshimoma         ###   ########.fr        #
+#    Updated: 2023/04/10 21:23:40 by yshimoma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 SRCS_DIR = ./src
 SRCS = main.c error.c error_utils.c quick_sort.c utils.c\
-		swap.c push.c rotate.c reverse_rotate.c stack_utils.c
+		swap.c push.c rotate.c reverse_rotate.c stack_utils.c\
+		put_error.c
 vpath %.c ${SRCS_DIR}
 OBJ_DIR = ./obj
 OBJS = ${addprefix $(OBJ_DIR)/, $(SRCS:.c=.o)}
