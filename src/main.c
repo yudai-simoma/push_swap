@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:11:00 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/10 21:27:17 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:06:29 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,24 @@ void	ft_set_array(t_ps_stack *ab_stack, int argc, char **argv)
 	}
 }
 
+//受け取った引数が昇順に並んでいるかチェック
+void	ft_is_sorted(t_ps_stack *ab_stack)
+{
+	size_t	i_;
+
+	i_ = 0;
+	while (i_ < ab_stack->array_size - 1)
+	{
+		if (ab_stack->cmprsd_arr_rv[i_] > ab_stack->cmprsd_arr_rv[i_ + 1])
+			return ;
+		i_++;
+	}
+	free(ab_stack->param_array);
+	free(ab_stack->sort_array);
+	free(ab_stack->cmprsd_arr_rv);
+	exit(1);
+}
+
 /*
  * TODO: ft_printfのライブラリを削除する（g_変数を使用しているため＼）
 		エラーメッセージをwriteでかく。またerror\nのみにする
@@ -125,6 +143,7 @@ int	main(void){
 	ft_set_array(&ab_stack_, argc, argv);
 	quick_sort(ab_stack_.sort_array, 0, ab_stack_.array_size - 1);
 	ft_reverse_coordinate_compression(&ab_stack_);
+	ft_is_sorted(&ab_stack_);
 	// ab_stack_.ab_flg = ab_stack_.array_size;
 	ab_stack_.ab_flg = 10;
 
@@ -137,7 +156,7 @@ int	main(void){
 
 // __attribute__((destructor))
 // static void destructor() {
-//     system("leaks -q push_swap");
+//	 system("leaks -q push_swap");
 // }
 
 // int	main(void){

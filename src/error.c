@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:26:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/10 21:26:15 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:06:40 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_error_check(int argc, char **argv)
 	int		*check_arr_num_;
 
 	if (argc == 1 || ft_isempty_pram(argc, argv))
-		exit (0);
+		exit(1);
 	if (ft_isnot_num_value(argc, argv))
 		ft_exit_error(NULL, NULL, NULL);
 	check_str_ = ft_pram_join(argv, argc - 1);
