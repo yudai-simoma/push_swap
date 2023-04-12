@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 19:32:35 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/09 12:35:15 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/12 10:22:46 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ static int	partition(int *sort_num, size_t point, size_t standard)
 }
 
 //クイックソートで並べ替え
-void	quick_sort(int *sort_num, size_t point, size_t standard)
+void	ft_quick_sort(int *sort_num, size_t point, size_t standard)
 {
 	size_t	next_p_;
 
 	if (point >= standard)
 		return ;
 	next_p_ = partition(sort_num, point, standard);
-	quick_sort(sort_num, next_p_ + 1, standard);
+	ft_quick_sort(sort_num, next_p_ + 1, standard);
 	if (next_p_ != 0)
-		quick_sort(sort_num, 0, next_p_ - 1);
+		ft_quick_sort(sort_num, 0, next_p_ - 1);
 	else
-		quick_sort(sort_num, 0, 0);
+		ft_quick_sort(sort_num, 0, 0);
 }

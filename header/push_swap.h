@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:09:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/10 21:26:58 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:16:12 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-//配列
+//stack、ABの構造体
 typedef struct s_ps_stack {
 	int		*param_array;
 	int		*sort_array;
@@ -26,6 +26,14 @@ typedef struct s_ps_stack {
 	size_t	array_size;
 	size_t	ab_flg;
 }	t_ps_stack;
+
+//long_sortに使用する構造体
+typedef struct s_long_sort {
+	int	delimiter_num;
+	int	scope_min;
+	int	scope_max;
+	int	a_top;
+}	t_long_sort;
 
 //utils.c
 char	*ft_pram_join(char **pram_str, size_t pram_len);
@@ -45,7 +53,7 @@ void	ft_error_all_free(char *check_str, char **check_c, int *check_arr_num);
 void	ft_exit_error(char *str, char **c_str, int *num);
 void	ft_put_error_exit(void);
 //quick_sort.c
-void	quick_sort(int *sort_num, size_t point, size_t standard);
+void	ft_quick_sort(int *sort_num, size_t point, size_t standard);
 //stack_utils.c
 size_t	ft_stack_a_size(t_ps_stack *ab_stack);
 size_t	ft_stack_b_size(t_ps_stack *ab_stack);
@@ -65,6 +73,11 @@ void	ft_rotate_ab(t_ps_stack *ab_stack);
 void	ft_reverse_rotate_a(t_ps_stack *ab_stack);
 void	ft_reverse_rotate_b(t_ps_stack *ab_stack);
 void	ft_reverse_rotate_ab(t_ps_stack *ab_stack);
+//long_sort.c
+void	ft_long_sort(t_ps_stack *ab_stack);
+
+//TODO:後削除
+void	ft_stack_print(t_ps_stack *ab_stack_);
 #endif
 
 /*

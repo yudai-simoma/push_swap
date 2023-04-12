@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:11:00 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/11 21:06:29 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/12 10:42:32 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	*ft_convert_ptr(int argc, char **argv)
 void	ft_set_array(t_ps_stack *ab_stack, int argc, char **argv)
 {
 	ab_stack->array_size = ft_array_size(argc, argv);
+	ab_stack->ab_flg = ab_stack->array_size;
 	ab_stack->param_array = ft_convert_ptr(argc, argv);
 	if (ab_stack->param_array == NULL)
 		ft_put_error_exit();
@@ -141,15 +142,15 @@ int	main(void){
 	//TODO:エラーの処理の戻り値はint*のため、構造体に格納し、座標圧縮へ行く
 	ft_error_check(argc, argv);
 	ft_set_array(&ab_stack_, argc, argv);
-	quick_sort(ab_stack_.sort_array, 0, ab_stack_.array_size - 1);
+	ft_quick_sort(ab_stack_.sort_array, 0, ab_stack_.array_size - 1);
 	ft_reverse_coordinate_compression(&ab_stack_);
 	ft_is_sorted(&ab_stack_);
-	// ab_stack_.ab_flg = ab_stack_.array_size;
-	ab_stack_.ab_flg = 10;
-
-	ft_stack_print(&ab_stack_);
-	
-	ft_stack_print(&ab_stack_);
+	// if (ab_stack_.array_size < 7)
+	// 	//ft_short_sort(&ab_stack_);
+	// else
+	// 	//ロングソート
+	ft_long_sort(&ab_stack_);
+	// ft_stack_print(&ab_stack_);
 	return (0);
 }
 // #include <libc.h>
@@ -169,7 +170,7 @@ int	main(void){
 // 	ab_stack.param_array = ft_convert_ptr(argc, argv);
 // 	ab_stack.sort_array = ft_convert_ptr(argc, argv);
 // 	ab_stack.array_size = ft_array_size(argc, argv);
-// 	quick_sort(ab_stack.sort_array, 0, ab_stack.array_size - 1);
+// 	ft_quick_sort(ab_stack.sort_array, 0, ab_stack.array_size - 1);
 // 	ft_printf ("num = ");
 // 	for (size_t i = 0; i < ab_stack.array_size; i++) {
 // 		ft_printf("%d,", ab_stack.param_array[i]);

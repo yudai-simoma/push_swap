@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:34:36 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/10 21:12:15 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:24:56 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ void	ft_reverse_coordinate_compression(t_ps_stack *ab_stack)
 	oi_ = malloc_size - 1;
 	while (i_ < malloc_size - 1)
 	{
-		si_ = 0;
-		while (si_ < malloc_size - 1)
+		si_ = 1;
+		while (si_ < malloc_size)
 		{
 			if (ab_stack->param_array[i_] == ab_stack->sort_array[si_])
 			{
