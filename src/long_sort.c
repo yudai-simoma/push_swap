@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:24:15 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/12 16:39:13 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/12 22:14:33 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_divide_and_move_b(t_ps_stack *ab_stack, t_long_sort *l_sort)
 	while (ft_stack_a_size(ab_stack) != 0)
 	{
 		l_sort->scope_min = 1 + l_sort->scope_max;
-		l_sort->scope_max = ((ab_stack->array_size / l_sort->delimiter_num) * 2) + (l_sort->scope_min - 1);
+		l_sort->scope_max = l_sort->delimiter_num + (l_sort->scope_min - 1);
 		i_ = 0;
 		while (i_ < ab_stack->array_size)
 		{
@@ -57,6 +57,7 @@ void	ft_divide_and_move_b(t_ps_stack *ab_stack, t_long_sort *l_sort)
 				ft_rotate_a(ab_stack);
 			i_++;
 		}
+		ft_stack_print(ab_stack);
 	}
 }
 
@@ -64,7 +65,7 @@ void	ft_long_sort(t_ps_stack *ab_stack)
 {
 	t_long_sort	long_sort_;
 
-	long_sort_.delimiter_num = 6;
+	long_sort_.delimiter_num = 8;
 	long_sort_.scope_min = 0;
 	long_sort_.scope_max = 0;
 	ft_stack_print(ab_stack);

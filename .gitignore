@@ -2,4 +2,4 @@ a.out
 *.o
 libft
 ft_printf
-
+push_swap
