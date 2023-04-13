@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 11:08:31 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/09 15:37:13 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/13 20:44:52 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_swap_a(t_ps_stack *ab_stack)
 		return ;
 	ft_swap(&ab_stack->cmprsd_arr_rv[ab_stack->ab_flg],
 		&ab_stack->cmprsd_arr_rv[ab_stack->ab_flg - 1]);
+	ft_putendl_fd("sa", 1);
 }
 
 //スタックbの先頭の2つの要素を入れ替える。
@@ -30,6 +31,7 @@ void	ft_swap_b(t_ps_stack *ab_stack)
 		return ;
 	ft_swap(&ab_stack->cmprsd_arr_rv[ab_stack->ab_flg + 1],
 		&ab_stack->cmprsd_arr_rv[ab_stack->ab_flg + 2]);
+	ft_putendl_fd("sb", 1);
 }
 
 //saとsbを同時に行う

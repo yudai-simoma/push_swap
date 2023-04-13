@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:11:00 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/12 10:42:32 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:00:50 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ size_t	ft_array_size(int argc, char **argv)
 	char	**split_c_;
 	size_t	i_;
 
-	join_str_ = ft_pram_join(argv, argc - 1);
+	join_str_ = ft_pram_join(argc, argv);
 	if (join_str_ == NULL)
 		ft_put_error_exit();
 	split_c_ = ft_split(join_str_, ' ');
@@ -72,7 +72,7 @@ int	*ft_convert_ptr(int argc, char **argv)
 	char	**split_c_;
 	int		*ptr_num_;
 
-	join_str_ = ft_pram_join(argv, argc - 1);
+	join_str_ = ft_pram_join(argc, argv);
 	if (join_str_ == NULL)
 		return (NULL);
 	split_c_ = ft_split(join_str_, ' ');
@@ -113,10 +113,10 @@ void	ft_is_sorted(t_ps_stack *ab_stack)
 {
 	size_t	i_;
 
-	i_ = 0;
+	i_ = 1;
 	while (i_ < ab_stack->array_size - 1)
 	{
-		if (ab_stack->cmprsd_arr_rv[i_] > ab_stack->cmprsd_arr_rv[i_ + 1])
+		if (ab_stack->cmprsd_arr_rv[i_] < ab_stack->cmprsd_arr_rv[i_ + 1])
 			return ;
 		i_++;
 	}
@@ -133,10 +133,29 @@ void	ft_is_sorted(t_ps_stack *ab_stack)
 		引数がソートされているかのチェック
 		エラーチェックの確認
  */
+// int	main(int argc, char **argv){
+// 	t_ps_stack	ab_stack_;
+
+// 	ab_stack_ = (t_ps_stack){0};
+// 	//TODO:エラーの処理の戻り値はint*のため、構造体に格納し、座標圧縮へ行く
+// 	ft_error_check(argc, argv);
+// 	ft_set_array(&ab_stack_, argc, argv);
+// 	ft_quick_sort(ab_stack_.sort_array, 0, ab_stack_.array_size - 1);
+// 	ft_reverse_coordinate_compression(&ab_stack_);
+// 	ft_is_sorted(&ab_stack_);
+// 	// if (ab_stack_.array_size < 7)
+// 	// 	//ft_short_sort(&ab_stack_);
+// 	// else
+// 	// 	//ロングソート
+// 	ft_long_sort(&ab_stack_);
+// 	ft_stack_print(&ab_stack_);
+// 	return (0);
+// }
+
 int	main(void){
 	t_ps_stack	ab_stack_;
-	char *argv[3] = {"3 +6 2 -5 1 +7 -4 10", "9 -12 +11  15 8 14 +13 2147483647","2147483646 -2147483648 -2147483647 0"};
-	int argc = 4;
+	char *argv[1] = {"./push_swap" "0 23 243  43 45 67 4 -45 -563  73"};
+	int argc = 2;
 
 	ab_stack_ = (t_ps_stack){0};
 	//TODO:エラーの処理の戻り値はint*のため、構造体に格納し、座標圧縮へ行く
@@ -150,9 +169,11 @@ int	main(void){
 	// else
 	// 	//ロングソート
 	ft_long_sort(&ab_stack_);
-	// ft_stack_print(&ab_stack_);
+	ft_stack_print(&ab_stack_);
 	return (0);
 }
+
+
 // #include <libc.h>
 
 // __attribute__((destructor))

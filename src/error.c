@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:26:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/11 21:06:40 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:10:58 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	ft_error_check(int argc, char **argv)
 		exit(1);
 	if (ft_isnot_num_value(argc, argv))
 		ft_exit_error(NULL, NULL, NULL);
-	check_str_ = ft_pram_join(argv, argc - 1);
+	check_str_ = ft_pram_join(argc, argv);
 	if (check_str_ == NULL)
 		ft_exit_error(NULL, NULL, NULL);
 	if (ft_isnot_integer(check_str_) || ft_is_sign_error(check_str_))
@@ -97,7 +97,7 @@ void	ft_error_check(int argc, char **argv)
 	check_arr_num_ = ft_set_arr_num(check_c_);
 	if (check_arr_num_ == NULL)
 		ft_exit_error(check_str_, check_c_, NULL);
-	if (ft_is_duplicate(check_arr_num_))
+	if (ft_is_duplicate(check_arr_num_, argc, argv))
 		ft_exit_error(check_str_, check_c_, check_arr_num_);
 	ft_error_all_free(check_str_, check_c_, check_arr_num_);
 	return ;

@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:42:26 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/08 12:46:07 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:01:58 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	ft_isnot_num_value(int argc, char **argv)
 	size_t	j_;
 	size_t	num_count_;
 
-	i_ = 0;
-	while (i_ < argc - 1)
+	i_ = 1;
+	while (i_ < argc)
 	{
 		j_ = 0;
 		num_count_ = 0;
@@ -95,18 +95,20 @@ int	ft_is_sign_error(char *check_str)
 
 //重複している
 //TODO:ここではサイズを取得しているが、本来は構造体の中に入っている
-int	ft_is_duplicate(int *check_arr_num)
+int	ft_is_duplicate(int *check_arr_num, int argc, char **argv)
 {
 	size_t	i_;
 	size_t	j_;
 	size_t	dup_count_;
+	size_t	array_size_;
 
 	i_ = 0;
-	while (i_ < 13)
+	array_size_ = ft_array_size(argc, argv);
+	while (i_ < array_size_)
 	{
 		j_ = 0;
 		dup_count_ = 0;
-		while (j_ < 13)
+		while (j_ < array_size_)
 		{
 			if (check_arr_num[i_] == check_arr_num[j_])
 				dup_count_++;

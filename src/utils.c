@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:34:36 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/12 14:24:56 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:52:04 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,23 @@ static char	*ft_strjoin_space(char const *s1, char const *s2)
 }
 
 //コマンドライン引数で受け取ったchar* を char*に変換
-char	*ft_pram_join(char **pram_str, size_t pram_len)
+char	*ft_pram_join(int argc, char **argv)
 {
 	char	*malloc_str_;
-	size_t	i_;
+	int		i_;
 
-	i_ = 0;
-	while (i_ < pram_len)
+	i_ = 1;
+	while (i_ < argc)
 	{
-		if (i_ == 0)
+		if (i_ == 1)
 		{
-			malloc_str_ = ft_strjoin("", pram_str[i_]);
+			malloc_str_ = ft_strjoin("", argv[i_]);
 			if (malloc_str_ == NULL)
 				return (NULL);
 		}
 		else
 		{
-			malloc_str_ = ft_strjoin_space(malloc_str_, pram_str[i_]);
+			malloc_str_ = ft_strjoin_space(malloc_str_, argv[i_]);
 			if (malloc_str_ == NULL)
 				return (NULL);
 		}
@@ -98,17 +98,17 @@ void	ft_reverse_coordinate_compression(t_ps_stack *ab_stack)
 	size_t	oi_;
 	size_t	malloc_size;
 
-	malloc_size = ab_stack->array_size + 1;
+	malloc_size = ab_stack->array_size;
 	i_ = 0;
-	oi_ = malloc_size - 1;
-	while (i_ < malloc_size - 1)
+	oi_ = malloc_size;
+	while (i_ < malloc_size)
 	{
-		si_ = 1;
+		si_ = 0;
 		while (si_ < malloc_size)
 		{
 			if (ab_stack->param_array[i_] == ab_stack->sort_array[si_])
 			{
-				ab_stack->cmprsd_arr_rv[oi_] = si_;
+				ab_stack->cmprsd_arr_rv[oi_] = si_ + 1;
 				oi_--;
 			}
 			si_++;

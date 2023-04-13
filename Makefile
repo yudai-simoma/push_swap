@@ -6,7 +6,7 @@
 #    By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 18:42:11 by yshimoma          #+#    #+#              #
-#    Updated: 2023/04/12 14:17:57 by yshimoma         ###   ########.fr        #
+#    Updated: 2023/04/13 21:41:49 by yshimoma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ_DIR = ./obj
 OBJS = ${addprefix $(OBJ_DIR)/, $(SRCS:.c=.o)}
 INCLUDE = ./header
 CC = cc
-# CFLAGS = -Wall -Wextra -Werror -fsanitize=address -fno-omit-frame-pointer
+# CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 CFLAGS = -Wall -Wextra -Werror -g
 AR = ar
 AR_FLAGS = rcs

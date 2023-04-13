@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:09:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/12 16:16:12 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/13 21:05:51 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,27 @@ typedef struct s_ps_stack {
 	size_t	ab_flg;
 }	t_ps_stack;
 
-//long_sortに使用する構造体
-typedef struct s_long_sort {
+//スタックAに戻す際に使用する構造体
+typedef struct s_move_a {
+	int		b_top_;
+	int		search_num;
+	int		search_num_next;
+	size_t	search_num_flg;
+	size_t	a_move_flg;
+	size_t	group_move_count;
+}	t_move_a;
+
+//スタックBに移動させる構造体
+typedef struct s_move_b {
 	int	delimiter_num;
 	int	scope_min;
 	int	scope_max;
-	int	a_top;
-}	t_long_sort;
+}	t_move_b;
 
+//main.c
+size_t	ft_array_size(int argc, char **argv);
 //utils.c
-char	*ft_pram_join(char **pram_str, size_t pram_len);
+char	*ft_pram_join(int argc, char **argv);
 int		*ft_set_arr_num(char **check_str);
 void	ft_free_str(char **str);
 void	ft_reverse_coordinate_compression(t_ps_stack *ab_stack);
@@ -47,7 +58,7 @@ int		ft_isempty_pram(int argc, char **argv);
 int		ft_isnot_num_value(int argc, char **argv);
 int		ft_isnot_integer(char *check_str);
 int		ft_is_sign_error(char *check_str);
-int		ft_is_duplicate(int *check_arr_num);
+int		ft_is_duplicate(int *check_arr_num, int argc, char **argv);
 //put_error.c
 void	ft_error_all_free(char *check_str, char **check_c, int *check_arr_num);
 void	ft_exit_error(char *str, char **c_str, int *num);

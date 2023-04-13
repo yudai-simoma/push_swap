@@ -3,3 +3,5 @@ a.out
 libft
 ft_printf
 push_swap
+checker
+/unit_test/
