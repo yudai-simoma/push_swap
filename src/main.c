@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:11:00 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/13 22:00:50 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:41:43 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,29 +138,8 @@ void	ft_is_sorted(t_ps_stack *ab_stack)
 		引数がソートされているかのチェック
 		エラーチェックの確認
  */
-// int	main(int argc, char **argv){
-// 	t_ps_stack	ab_stack_;
-
-// 	ab_stack_ = (t_ps_stack){0};
-// 	//TODO:エラーの処理の戻り値はint*のため、構造体に格納し、座標圧縮へ行く
-// 	ft_error_check(argc, argv);
-// 	ft_set_array(&ab_stack_, argc, argv);
-// 	ft_quick_sort(ab_stack_.sort_array, 0, ab_stack_.array_size - 1);
-// 	ft_reverse_coordinate_compression(&ab_stack_);
-// 	ft_is_sorted(&ab_stack_);
-// 	// if (ab_stack_.array_size < 7)
-// 	// 	//ft_short_sort(&ab_stack_);
-// 	// else
-// 	// 	//ロングソート
-// 	ft_long_sort(&ab_stack_);
-// 	ft_stack_print(&ab_stack_);
-// 	return (0);
-// }
-
-int	main(void){
+int	main(int argc, char **argv){
 	t_ps_stack	ab_stack_;
-	char *argv[1] = {"./push_swap" "0 23 243  43 45 67 4 -45 -563  73"};
-	int argc = 2;
 
 	ab_stack_ = (t_ps_stack){0};
 	//TODO:エラーの処理の戻り値はint*のため、構造体に格納し、座標圧縮へ行く
@@ -174,10 +153,52 @@ int	main(void){
 	// else
 	// 	//ロングソート
 	ft_long_sort(&ab_stack_);
-	ft_stack_print(&ab_stack_);
+	// ft_stack_print(&ab_stack_);
 	return (0);
 }
 
+// int	main(void){
+// 	t_ps_stack	ab_stack_;
+// 	// char *argv[2] = {"./push_swap", "53 70 63 81 3 20 87 79 57 38 21 35 72 100 22 40 64 26 44 8 15 74 66 30 32 73 2 11 28 46 69 94 65 68 10 12 84 62 34 95 92 36 41 16 29 75 52 71 80 99 76 23 50 33 96 0 19 37 61 24 51 6 86 9 7 58 67 47 13 83 56 43 55 45 91 25 48 59 93 60 77 27 39 85 49 31 18 17 89 97 1 88 98 14 90 42 82 54 78 4"};
+// 	char *argv[2] = {"./push_swap", "995854594 1116725726 579066316 1098308372 1949288486 512988546 -2120762637 2107293831 -1547808012 -548329368 -593421432 -427235846 835053612 -1330436478 -1757696064 -936743806 63392982 -901606491 1610100791 1830908052 -848194210 996318878 2126729073 -1794451911 556739080 1738381133 -1595186165 -1078175655 2039816602 -1102332552 -887144298 -1373655864 1320218183 -521962250 1304227295 -1027038804 -2016810013 1443091492 184486476 1798090089 -1333810512 811094432 -161579280 -280535802 -711065128 310302375 -1516271126 197742839 -181985656 -601965747 685869019 -817105991 343530368 -1440399352 896562704 -1527985733 -470334351 -1488109684 402240906 -1339312929 581444053 -681949501 71058464 100793456 -457759650 -1433081026 -1496272953 -1805679659 -1524917060 -1216564605 -214928874 878819579 1679593405 1345084108 -1188204304 -342819896 1506099482 -11704537 -846831103 1776715655 1836828454 -1881573872 739919179 939956803 1524273663 759972860 -1037560172 2045948534 1053511538 -492981275 902909189 385022031 -958500335 -2022225385 696393964 -339921133 1278622212 942830893 -779803442 785536890"};
+// 	int argc = 2;
+
+// 	ab_stack_ = (t_ps_stack){0};
+// 	//TODO:エラーの処理の戻り値はint*のため、構造体に格納し、座標圧縮へ行く
+// 	ft_error_check(argc, argv);
+// 	ft_set_array(&ab_stack_, argc, argv);
+// 	ft_printf("param_array = ");
+// 	for (int i = 0; i < 100; i++) {
+// 		ft_printf("%d,", ab_stack_.param_array[i]);
+// 	}
+// 	ft_printf("\n");
+
+// 	ft_quick_sort(ab_stack_.sort_array, 0, ab_stack_.array_size - 1);
+
+// 	ft_printf("sort_array = ");
+// 	for (int i = 0; i < 100; i++) {
+// 		ft_printf("%d,", ab_stack_.sort_array[i]);
+// 	}
+// 	ft_printf("\n");
+
+// 	ft_reverse_coordinate_compression(&ab_stack_);
+
+// 	ft_printf("cmprsd_arr_rv = ");
+// 	for (int i = 1; i < 101; i++) {
+// 		ft_printf("%d,", ab_stack_.cmprsd_arr_rv[i]);
+// 	}
+// 	ft_printf("\n");
+
+
+// 	ft_is_sorted(&ab_stack_);
+// 	// if (ab_stack_.array_size < 7)
+// 	// 	//ft_short_sort(&ab_stack_);
+// 	// else
+// 	// 	//ロングソート
+// 	// ft_long_sort(&ab_stack_);
+// 	// ft_stack_print(&ab_stack_);
+// 	return (0);
+// }
 
 // #include <libc.h>
 

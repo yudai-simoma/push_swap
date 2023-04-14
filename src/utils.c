@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:34:36 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/13 21:52:04 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:19:59 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,29 +93,29 @@ void	ft_free_str(char **str)
 //座標圧縮する関数
 void	ft_reverse_coordinate_compression(t_ps_stack *ab_stack)
 {
-	size_t	i_;
+	size_t	pi_;
 	size_t	si_;
-	size_t	oi_;
+	size_t	ci_;
 	size_t	malloc_size;
 
 	malloc_size = ab_stack->array_size;
-	i_ = 0;
-	oi_ = malloc_size;
-	while (i_ < malloc_size)
+	pi_ = 0;
+	ci_ = 1;
+	while (pi_ < malloc_size)
 	{
 		si_ = 0;
 		while (si_ < malloc_size)
 		{
-			if (ab_stack->param_array[i_] == ab_stack->sort_array[si_])
+			if (ab_stack->param_array[pi_] == ab_stack->sort_array[si_])
 			{
-				ab_stack->cmprsd_arr_rv[oi_] = si_ + 1;
-				oi_--;
+				ab_stack->cmprsd_arr_rv[ci_] = si_ + 1;
+				ci_++;
 			}
 			si_++;
 		}
-		i_++;
+		pi_++;
 	}
-	ab_stack->cmprsd_arr_rv[oi_] = 0;
+	ab_stack->cmprsd_arr_rv[0] = 0;
 }
 // 5,1,0,18,19,15,16,11,17,14,2,12,13,4,10,6,3,7,9,8,
 // 0,5,1,0,18,19,15,16,11,17,14,2,12,13,4,10,6,3,7,9,
