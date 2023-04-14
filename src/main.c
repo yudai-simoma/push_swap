@@ -43,6 +43,7 @@ void	ft_stack_print(t_ps_stack *ab_stack_)
 	ft_printf("\n");
 }
 
+//int配列の要素数を取得する関数
 size_t	ft_array_size(int argc, char **argv)
 {
 	char	*join_str_;
@@ -66,6 +67,7 @@ size_t	ft_array_size(int argc, char **argv)
 	return (i_);
 }
 
+//引数で受け取った文字列をint配列へ変換する関数
 int	*ft_convert_ptr(int argc, char **argv)
 {
 	char	*join_str_;
@@ -86,6 +88,9 @@ int	*ft_convert_ptr(int argc, char **argv)
 	return (ptr_num_);
 }
 
+//引数をint配列へ格納
+//引数をソートし、int配列へ格納
+//座標圧縮するint配列をmallocで確保
 void	ft_set_array(t_ps_stack *ab_stack, int argc, char **argv)
 {
 	ab_stack->array_size = ft_array_size(argc, argv);
@@ -116,7 +121,7 @@ void	ft_is_sorted(t_ps_stack *ab_stack)
 	i_ = 1;
 	while (i_ < ab_stack->array_size - 1)
 	{
-		if (ab_stack->cmprsd_arr_rv[i_] < ab_stack->cmprsd_arr_rv[i_ + 1])
+		if (ab_stack->cmprsd_arr_rv[i_] > ab_stack->cmprsd_arr_rv[i_ + 1])
 			return ;
 		i_++;
 	}
