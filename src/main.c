@@ -6,11 +6,12 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:11:00 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/14 22:41:43 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/15 19:00:50 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 // スタックの中身を出力する関数
 // 検証用
@@ -18,30 +19,43 @@ void	ft_stack_print(t_ps_stack *ab_stack_)
 {
 	size_t i = 0;
 
-	ft_printf("num_order = ");
+	fprintf(stderr, "num_order = ");
 	for (size_t j = 0; j < ab_stack_->array_size + 1; j++) {
-		ft_printf("%d,", ab_stack_->cmprsd_arr_rv[j]);
+		fprintf(stderr, "%d,", ab_stack_->cmprsd_arr_rv[j]);
 	}
-	ft_printf("\n");
+	fprintf(stderr, "\n");
 
-	ft_printf("num[a]    = ");
+	// for (size_t i = 0; i < ab_stack_->array_size; i++)
+	// {
+	// 	if (i == ab_stack_->ab_flg)
+	// 	{
+	// 		fprintf(stderr, "| ");
+	// 	}
+	// 	fprintf(stderr, "%d ", ab_stack_->cmprsd_arr_rv[i]);
+		
+	// }
+	// fprintf(stderr, "\n");
+	
+
+	fprintf(stderr, "\nnum[a]    = ");
 	i = ab_stack_->ab_flg;
 	while (i != 0)
 	{
-		ft_printf("%d,", ab_stack_->cmprsd_arr_rv[i]);
+		fprintf(stderr, "%d,", ab_stack_->cmprsd_arr_rv[i]);
 		i--;
 	}
 	i = 0;
 	while (i < ab_stack_->ab_flg + 1)
 		i++;
-	ft_printf("\nnum[b]    = ");
+	fprintf(stderr, "\nnum[b]    = ");
 	while (i < ab_stack_->array_size + 1)
 	{
-		ft_printf("%d,", ab_stack_->cmprsd_arr_rv[i]);
+		fprintf(stderr, "%d,", ab_stack_->cmprsd_arr_rv[i]);
 		i++;
 	}
-	ft_printf("\n");
+	fprintf(stderr, "\n");
 }
+//1,2,3,43,45,|
 
 //int配列の要素数を取得する関数
 size_t	ft_array_size(int argc, char **argv)
@@ -117,18 +131,24 @@ void	ft_set_array(t_ps_stack *ab_stack, int argc, char **argv)
 void	ft_is_sorted(t_ps_stack *ab_stack)
 {
 	size_t	i_;
+	size_t	flg_;
 
 	i_ = 1;
+	flg_ = 1;
 	while (i_ < ab_stack->array_size - 1)
 	{
-		if (ab_stack->cmprsd_arr_rv[i_] > ab_stack->cmprsd_arr_rv[i_ + 1])
-			return ;
+		if (ab_stack->cmprsd_arr_rv[i_] < ab_stack->cmprsd_arr_rv[i_ + 1])
+			flg_++;
 		i_++;
 	}
-	free(ab_stack->param_array);
-	free(ab_stack->sort_array);
-	free(ab_stack->cmprsd_arr_rv);
-	exit(1);
+	if (flg_ == ab_stack->array_size)
+	{
+		free(ab_stack->param_array);
+		free(ab_stack->sort_array);
+		free(ab_stack->cmprsd_arr_rv);
+		exit(1);
+	}
+	return ;
 }
 
 /*
@@ -138,99 +158,115 @@ void	ft_is_sorted(t_ps_stack *ab_stack)
 		引数がソートされているかのチェック
 		エラーチェックの確認
  */
-int	main(int argc, char **argv){
+
+// int	main(int argc, char **argv){
+// 	t_ps_stack	ab_stack_;
+
+// 	ab_stack_ = (t_ps_stack){0};
+// 	ft_error_check(argc, argv);
+// 	ft_set_array(&ab_stack_, argc, argv);
+// 	ft_quick_sort(ab_stack_.sort_array, 0, ab_stack_.array_size - 1);
+// 	ft_reverse_coordinate_compression(&ab_stack_);
+// 	ft_is_sorted(&ab_stack_);
+
+// 	// ft_printf("param_array = ");
+// 	// for (size_t i = 0; i < ab_stack_.array_size; i++) {
+// 	// 	ft_printf("%d,", ab_stack_.param_array[i]);
+// 	// }
+// 	// ft_printf("\n");
+
+// 	// ft_printf("sort_array = ");
+// 	// for (size_t i = 0; i < ab_stack_.array_size; i++) {
+// 	// 	ft_printf("%d,", ab_stack_.sort_array[i]);
+// 	// }
+// 	// ft_printf("\n");
+
+// 	// ft_printf("cmprsd_arr_rv = ");
+// 	// for (size_t i = 1; i < ab_stack_.array_size + 1; i++) {
+// 	// 	ft_printf("%d,", ab_stack_.cmprsd_arr_rv[i]);
+// 	// }
+// 	// ft_printf("\n");
+
+// 	if (ab_stack_.array_size < 7)
+// 		ft_min_sort(&ab_stack_);
+// 	else
+// 		ft_long_sort(&ab_stack_);
+// 	// ft_stack_print(&ab_stack_);
+// 	free(ab_stack_.param_array);
+// 	free(ab_stack_.sort_array);
+// 	free(ab_stack_.cmprsd_arr_rv);
+// 	return (0);
+// }
+
+int	main(void){
 	t_ps_stack	ab_stack_;
+	char *argv[2] = {"./push_swap", "-1627938544 -108209547 -141775263 761404010 -1470852912 256563088 922296746 282171420 1178079131 -1877248141 648274901 1059957831 1575202097 -653943293 -766978320 -1549102263 -84541118 935493574 -1201812994 1035370470 1393949608 -528738572 -1924435512 1540164208 1191990169 42799422 241310635 195018452 -1703400146 1735010611 230408414 1960734545 796991510 128830925 665025219 8813107 108957507 461561254 -1774443347 1433042585 -1812066683 553845629 -772565081 192744897 -972546456 -426149472 -276336036 -296261853 769582457 1099095902 -742970907 -351078438 -139725258 209537666 1308191889 30389110 453869794 -1504973335 -1513395088 1907947646 1801421485 145852485 -46715082 -1588742350 888906472 -301020630 1244772242 -1607487264 -145727332 -2104644148 -1186298237 -234935257 -1987093584 367939095 -94667244 1838460776 -2054385535 966177186 1646704281 -858078582 1620451142 -1537588390 334721555 527654968 69914615 -630863932 40196317 -856344802 1269997276 -370888389 609481273 -1855172057 35014835 -2000533930 2086300120 -339724879 -408312745 -98322058 -662622024 -1800574422"};
+	// char *argv[2] = {"./push_swap", "607102189 1231087918 -2027594496 -1570825554 -1606185201 1968031746 1490159030 -1765407871 1664553377 -1833536760 70283109 -2081830741 997875396 -650175954 -2007435249 938274055 -1476469588 1973304387 -300827087 -2115307307 -1233119434 1351178703 1721534074 1692155108 1052932826 830021679 882574257 -1772395419 1778488430 1764906516 -1566750309 -253836030 363303446 -698405739 -797611676 1285214712 465774210 -913238478 -348605499 74352630 -1931679975 -606188109 1512021662 1359995582 1278912665 1788050916 -1536017879 -1793912150 -957449767 -467472615 195609941 -1874440526 459755391 597823101 -1337389598 407466631 1022868543 -1808498275 1230749461 2063528572 1965837653 -196778638 -1030656091 -443726413 701285232 -1060215050 -155002893 1463825271 -935199105 938827220 73950215 453384634 1923005175 1898365776 -475928477 -1298599326 -820123409 -199610841 -1568455907 -1142836048 1884986701 -177369026 1828249397 -504398689 222553406 -957951395 2115796245 1595454613 1343541873 -491412907 251936646 2097224202 1807019203 -301299738 1393163832 1527587947 632717273 -234048027 -355056860 -1252164184"};
+	int argc = 2;
 
 	ab_stack_ = (t_ps_stack){0};
-	//TODO:エラーの処理の戻り値はint*のため、構造体に格納し、座標圧縮へ行く
 	ft_error_check(argc, argv);
 	ft_set_array(&ab_stack_, argc, argv);
 	ft_quick_sort(ab_stack_.sort_array, 0, ab_stack_.array_size - 1);
 	ft_reverse_coordinate_compression(&ab_stack_);
+
+	// ft_printf("param_array = ");
+	// for (size_t i = 0; i < ab_stack_.array_size; i++) {
+	// 	ft_printf("%d,", ab_stack_.param_array[i]);
+	// }
+	// ft_printf("\n");
+
+	// ft_printf("sort_array = ");
+	// for (size_t i = 0; i < ab_stack_.array_size; i++) {
+	// 	ft_printf("%d,", ab_stack_.sort_array[i]);
+	// }
+	// ft_printf("\n");
+
+	// ft_printf("cmprsd_arr_rv = ");
+	// for (size_t i = 1; i < ab_stack_.array_size + 1; i++) {
+	// 	ft_printf("%d,", ab_stack_.cmprsd_arr_rv[i]);
+	// }
+	// ft_printf("\n");
+
 	ft_is_sorted(&ab_stack_);
-	// if (ab_stack_.array_size < 7)
-	// 	//ft_short_sort(&ab_stack_);
-	// else
-	// 	//ロングソート
-	ft_long_sort(&ab_stack_);
+	if (ab_stack_.array_size < 7)
+		ft_min_sort(&ab_stack_);
+	else
+		ft_long_sort(&ab_stack_);
 	// ft_stack_print(&ab_stack_);
+	free(ab_stack_.param_array);
+	free(ab_stack_.sort_array);
+	free(ab_stack_.cmprsd_arr_rv);
 	return (0);
 }
 
-// int	main(void){
-// 	t_ps_stack	ab_stack_;
-// 	// char *argv[2] = {"./push_swap", "53 70 63 81 3 20 87 79 57 38 21 35 72 100 22 40 64 26 44 8 15 74 66 30 32 73 2 11 28 46 69 94 65 68 10 12 84 62 34 95 92 36 41 16 29 75 52 71 80 99 76 23 50 33 96 0 19 37 61 24 51 6 86 9 7 58 67 47 13 83 56 43 55 45 91 25 48 59 93 60 77 27 39 85 49 31 18 17 89 97 1 88 98 14 90 42 82 54 78 4"};
-// 	char *argv[2] = {"./push_swap", "995854594 1116725726 579066316 1098308372 1949288486 512988546 -2120762637 2107293831 -1547808012 -548329368 -593421432 -427235846 835053612 -1330436478 -1757696064 -936743806 63392982 -901606491 1610100791 1830908052 -848194210 996318878 2126729073 -1794451911 556739080 1738381133 -1595186165 -1078175655 2039816602 -1102332552 -887144298 -1373655864 1320218183 -521962250 1304227295 -1027038804 -2016810013 1443091492 184486476 1798090089 -1333810512 811094432 -161579280 -280535802 -711065128 310302375 -1516271126 197742839 -181985656 -601965747 685869019 -817105991 343530368 -1440399352 896562704 -1527985733 -470334351 -1488109684 402240906 -1339312929 581444053 -681949501 71058464 100793456 -457759650 -1433081026 -1496272953 -1805679659 -1524917060 -1216564605 -214928874 878819579 1679593405 1345084108 -1188204304 -342819896 1506099482 -11704537 -846831103 1776715655 1836828454 -1881573872 739919179 939956803 1524273663 759972860 -1037560172 2045948534 1053511538 -492981275 902909189 385022031 -958500335 -2022225385 696393964 -339921133 1278622212 942830893 -779803442 785536890"};
-// 	int argc = 2;
-
-// 	ab_stack_ = (t_ps_stack){0};
-// 	//TODO:エラーの処理の戻り値はint*のため、構造体に格納し、座標圧縮へ行く
-// 	ft_error_check(argc, argv);
-// 	ft_set_array(&ab_stack_, argc, argv);
-// 	ft_printf("param_array = ");
-// 	for (int i = 0; i < 100; i++) {
-// 		ft_printf("%d,", ab_stack_.param_array[i]);
-// 	}
-// 	ft_printf("\n");
-
-// 	ft_quick_sort(ab_stack_.sort_array, 0, ab_stack_.array_size - 1);
-
-// 	ft_printf("sort_array = ");
-// 	for (int i = 0; i < 100; i++) {
-// 		ft_printf("%d,", ab_stack_.sort_array[i]);
-// 	}
-// 	ft_printf("\n");
-
-// 	ft_reverse_coordinate_compression(&ab_stack_);
-
-// 	ft_printf("cmprsd_arr_rv = ");
-// 	for (int i = 1; i < 101; i++) {
-// 		ft_printf("%d,", ab_stack_.cmprsd_arr_rv[i]);
-// 	}
-// 	ft_printf("\n");
 
 
-// 	ft_is_sorted(&ab_stack_);
-// 	// if (ab_stack_.array_size < 7)
-// 	// 	//ft_short_sort(&ab_stack_);
-// 	// else
-// 	// 	//ロングソート
-// 	// ft_long_sort(&ab_stack_);
-// 	// ft_stack_print(&ab_stack_);
-// 	return (0);
-// }
 
 // #include <libc.h>
 
 // __attribute__((destructor))
 // static void destructor() {
-//	 system("leaks -q push_swap");
+// 	 system("leaks -q push_swap");
 // }
 
-// int	main(void){
-// 	t_ps_stack	ab_stack;
-// 	char *argv[3] = {"3 +6 2 -5 1 +7 -4 10", "9 -12 +11  15 8 14 +13 2147483647","2147483646 -2147483648 -2147483647 0"};
-// 	int argc = 4;
+	// ft_printf("param_array = ");
+	// for (int i = 0; i < 100; i++) {
+	// 	ft_printf("%d,", ab_stack_.param_array[i]);
+	// }
+	// ft_printf("\n");
 
-// 	//TODO:エラーの処理の戻り値はint*のため、構造体に格納し、座標圧縮へ行く
-// 	ft_iserror(argc, argv);
-// 	ab_stack.param_array = ft_convert_ptr(argc, argv);
-// 	ab_stack.sort_array = ft_convert_ptr(argc, argv);
-// 	ab_stack.array_size = ft_array_size(argc, argv);
-// 	ft_quick_sort(ab_stack.sort_array, 0, ab_stack.array_size - 1);
-// 	ft_printf ("num = ");
-// 	for (size_t i = 0; i < ab_stack.array_size; i++) {
-// 		ft_printf("%d,", ab_stack.param_array[i]);
-// 	}
-// 	ft_printf("\nnum_sort = ");
-// 	for (size_t i = 0; i < ab_stack.array_size; i++) {
-// 		ft_printf("%d,", ab_stack.sort_array[i]);
-// 	}
-// 	ab_stack.cmprsd_arr_rv = (int *)malloc(sizeof(int) * ab_stack.array_size);
-// 	ft_coordinate_compression(ab_stack.param_array, ab_stack.sort_array, ab_stack.cmprsd_arr_rv, ab_stack.array_size);
-// 	ft_printf("\nnum_order = ");
-// 	for (size_t i = 0; i < ab_stack.array_size; i++) {
-// 		ft_printf("%d,", ab_stack.cmprsd_arr_rv[i]);
-// 	}
-// 	return (0);
-// }
+
+	// ft_printf("sort_array = ");
+	// for (int i = 0; i < 100; i++) {
+	// 	ft_printf("%d,", ab_stack_.sort_array[i]);
+	// }
+	// ft_printf("\n");
+
+
+
+	// ft_printf("cmprsd_arr_rv = ");
+	// for (int i = 1; i < 101; i++) {
+	// 	ft_printf("%d,", ab_stack_.cmprsd_arr_rv[i]);
+	// }
+	// ft_printf("\n");

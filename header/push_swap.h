@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:09:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/13 21:05:51 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/15 11:48:54 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct s_ps_stack {
 
 //スタックAに戻す際に使用する構造体
 typedef struct s_move_a {
-	int		b_top_;
-	int		search_num;
-	int		search_num_next;
+	size_t	b_top_;
+	size_t	search_num;
+	size_t	search_num_next;
 	size_t	search_num_flg;
 	size_t	a_move_flg;
 	size_t	group_move_count;
@@ -39,9 +39,9 @@ typedef struct s_move_a {
 
 //スタックBに移動させる構造体
 typedef struct s_move_b {
-	int	delimiter_num;
-	int	scope_min;
-	int	scope_max;
+	size_t	delimiter_num;
+	size_t	scope_min;
+	size_t	scope_max;
 }	t_move_b;
 
 //main.c
@@ -86,6 +86,9 @@ void	ft_reverse_rotate_b(t_ps_stack *ab_stack);
 void	ft_reverse_rotate_ab(t_ps_stack *ab_stack);
 //long_sort.c
 void	ft_long_sort(t_ps_stack *ab_stack);
+bool	ft_rotate_or_reverse_rotate_check(t_ps_stack *ab_stack, int search_num);
+//min_sort.c
+void	ft_min_sort(t_ps_stack *ab_stack);
 
 //TODO:後削除
 void	ft_stack_print(t_ps_stack *ab_stack_);

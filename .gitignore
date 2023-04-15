@@ -5,3 +5,5 @@ ft_printf
 push_swap
 checker
 /unit_test/
+pain.sh
+/push-swap-pain/

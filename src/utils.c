@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:34:36 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/14 22:19:59 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/15 16:51:41 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_reverse_coordinate_compression(t_ps_stack *ab_stack)
 
 	malloc_size = ab_stack->array_size;
 	pi_ = 0;
-	ci_ = 1;
+	ci_ = ab_stack->array_size;
 	while (pi_ < malloc_size)
 	{
 		si_ = 0;
@@ -109,7 +109,7 @@ void	ft_reverse_coordinate_compression(t_ps_stack *ab_stack)
 			if (ab_stack->param_array[pi_] == ab_stack->sort_array[si_])
 			{
 				ab_stack->cmprsd_arr_rv[ci_] = si_ + 1;
-				ci_++;
+				ci_--;
 			}
 			si_++;
 		}
