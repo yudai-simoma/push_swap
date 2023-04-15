@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:24:15 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/15 19:05:45 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/15 21:06:04 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,9 @@ void	ft_ascending_move_a(t_ps_stack *ab_stack, t_move_b *move_b)
 			move_a_.search_num_flg = move_b->delimiter_num / 2;
 			num = move_a_.search_num;
 		}
-		else
-			num = move_a_.search_num;
-		while (move_a_.search_num_flg != 0)
+		// else
+		// 	move_a_.search_num_flg = move_b->delimiter_num % 2;
+		while (ft_stack_b_size(ab_stack) != 0 && move_a_.search_num_flg != 0)
 		{
 			move_a_.b_top_ = ab_stack->cmprsd_arr_rv[ab_stack->ab_flg + 1];
 			if (move_a_.b_top_ == move_a_.search_num)
@@ -152,7 +152,7 @@ void	ft_ascending_move_a(t_ps_stack *ab_stack, t_move_b *move_b)
 			{
 				ft_push_a(ab_stack);
 				// ft_rotate_a(ab_stack);
-				if (move_a_.search_num_next > num - (move_b->delimiter_num / 2))
+				if (move_a_.search_num_next < num - (move_b->delimiter_num / 2))
 					move_a_.search_num_flg--;
 				move_a_.a_move_flg++;
 				move_a_.search_num_next--;
@@ -173,7 +173,7 @@ void	ft_long_sort(t_ps_stack *ab_stack)
 {
 	t_move_b	move_b_;
 
-	move_b_.delimiter_num = 30;
+	move_b_.delimiter_num = 60;
 	move_b_.scope_min = 0;
 	move_b_.scope_max = 0;
 	// ft_printf("before_move_b\n");
@@ -190,7 +190,7 @@ void	ft_long_sort(t_ps_stack *ab_stack)
 	ft_ascending_move_a(ab_stack, &move_b_);
 
 	// ft_printf("after_move_a\n");
-	// ft_stack_print(ab_stack);
+	ft_stack_print(ab_stack);
 }
 
 
