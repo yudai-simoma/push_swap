@@ -6,7 +6,7 @@
 #    By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 18:42:11 by yshimoma          #+#    #+#              #
-#    Updated: 2023/04/15 11:40:26 by yshimoma         ###   ########.fr        #
+#    Updated: 2023/04/16 19:10:29 by yshimoma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,17 +21,20 @@ OBJS = ${addprefix $(OBJ_DIR)/, $(SRCS:.c=.o)}
 INCLUDE = ./header
 CC = cc
 # CFLAGS = -Wall -Wextra -Werror -fsanitize=address
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 AR = ar
 AR_FLAGS = rcs
 RM = rm -rf
+
+ifdef DEBUG_FLAG
+CFLAGS += -g -D COMP_DEF_FLAG=2
+endif
 
 all: ${NAME}
 
 ${NAME}: ${OBJS}
 	${MAKE} -C libft
-	${MAKE} -C ft_printf
-	${CC} ${CFLAGS} -I${INCLUDE} libft/libft.a ft_printf/libftprintf.a ${OBJS} -o $@
+	${CC} ${CFLAGS} -I${INCLUDE} libft/libft.a ${OBJS} -o $@
 
 ${OBJ_DIR}/%.o:%.c
 	mkdir -p ./obj
@@ -45,4 +48,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+debug:
+	@make DEBUG_FLAG=2
+
+.PHONY: all clean fclean re debug

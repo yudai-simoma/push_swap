@@ -6,17 +6,20 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:09:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/15 11:48:54 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:43:44 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft.h"
-# include "ft_printf.h"
+# include <stdio.h>
 # include <limits.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# ifndef COMP_DEF_FLAG
+#  define COMP_DEF_FLAG 1
+# endif
 
 //stack、ABの構造体
 typedef struct s_ps_stack {
@@ -27,22 +30,15 @@ typedef struct s_ps_stack {
 	size_t	ab_flg;
 }	t_ps_stack;
 
-//スタックAに戻す際に使用する構造体
-typedef struct s_move_a {
-	size_t	b_top_;
-	size_t	search_num;
-	size_t	search_num_next;
-	size_t	search_num_flg;
+//スタック移動させる構造体
+typedef struct s_move {
+	size_t	section_count;
+	int		section_num;
+	int		top_num;
+	int		search_num;
+	int		search_num_more;
 	size_t	a_move_flg;
-	size_t	group_move_count;
-}	t_move_a;
-
-//スタックBに移動させる構造体
-typedef struct s_move_b {
-	size_t	delimiter_num;
-	size_t	scope_min;
-	size_t	scope_max;
-}	t_move_b;
+}	t_move;
 
 //main.c
 size_t	ft_array_size(int argc, char **argv);
@@ -86,7 +82,6 @@ void	ft_reverse_rotate_b(t_ps_stack *ab_stack);
 void	ft_reverse_rotate_ab(t_ps_stack *ab_stack);
 //long_sort.c
 void	ft_long_sort(t_ps_stack *ab_stack);
-bool	ft_rotate_or_reverse_rotate_check(t_ps_stack *ab_stack, int search_num);
 //min_sort.c
 void	ft_min_sort(t_ps_stack *ab_stack);
 

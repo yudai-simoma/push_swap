@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:41:18 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/15 20:14:46 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:22:46 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	ft_sort_size_max_6(t_ps_stack *ab_stack,
 			ft_push_b(ab_stack);
 			search_num_--;
 		}
-		else if (ft_rotate_or_reverse_rotate_check(ab_stack, search_num_))
-			ft_rotate_a(ab_stack);
+		// else if (ft_rotate_or_reverse_rotate_check(ab_stack, search_num_))
+		// 	ft_rotate_a(ab_stack);
 		else
 			ft_reverse_rotate_a(ab_stack);
 	}
