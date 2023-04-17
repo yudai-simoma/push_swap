@@ -6,13 +6,15 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:34:36 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/15 16:51:41 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:24:54 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//joinで結合する際に、間にスペースを入れる処理
+/*
+ * joinで結合する際に、間にスペースを入れる処理
+ */
 static char	*ft_strjoin_space(char const *s1, char const *s2)
 {
 	char	*str_;
@@ -31,7 +33,9 @@ static char	*ft_strjoin_space(char const *s1, char const *s2)
 	return (str_);
 }
 
-//コマンドライン引数で受け取ったchar* を char*に変換
+/*
+ * コマンドライン引数で受け取った**argv を char*に変換
+ */
 char	*ft_pram_join(int argc, char **argv)
 {
 	char	*malloc_str_;
@@ -57,7 +61,10 @@ char	*ft_pram_join(int argc, char **argv)
 	return (malloc_str_);
 }
 
-//char** を int*に変換
+/*
+ * char** を int*に変換
+ * ["123","43","777"] → [0]=123, [1]=42, [2]=777
+ */
 int	*ft_set_arr_num(char **str)
 {
 	int		*arr_num_;
@@ -76,7 +83,10 @@ int	*ft_set_arr_num(char **str)
 	return (arr_num_);
 }
 
-//2次元配列をfreeする
+/*
+ * char** をfreeする
+ * ※ft_splitを使用した値しか来ないため、NULLが必ず入っている
+ */
 void	ft_free_str(char **str)
 {
 	size_t	i;
@@ -90,7 +100,11 @@ void	ft_free_str(char **str)
 	free(str);
 }
 
-//座標圧縮する関数
+/*
+ * 座標圧縮する関数
+ * 「32 53 1 33 98」→「2 4 1 3 5」
+ * 配列へ後ろから入れている。（今回のデータの持ち方が逆から持つ必要があるため）
+ */
 void	ft_reverse_coordinate_compression(t_ps_stack *ab_stack)
 {
 	size_t	pi_;
@@ -117,5 +131,3 @@ void	ft_reverse_coordinate_compression(t_ps_stack *ab_stack)
 	}
 	ab_stack->cmprsd_arr_rv[0] = 0;
 }
-// 5,1,0,18,19,15,16,11,17,14,2,12,13,4,10,6,3,7,9,8,
-// 0,5,1,0,18,19,15,16,11,17,14,2,12,13,4,10,6,3,7,9,

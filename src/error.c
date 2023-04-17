@@ -6,21 +6,37 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:26:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/13 21:10:58 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:22:49 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//エラー処理
 
-// typedef struct s_error
-// {
-// 	char *check_str;
-// 	char **check_c;
-// 	int *check_arr_num;
-// 	size_t arr_num;
-// }   t_error;
+/*
+ * エラー処理の種類
+ *  ・コマンドライン引数の中に空文字だけの引数があるかどうかのチェック
+ *  ・コマンドライン引数の中に数値が一つもない引数があるかどうかのチェック
+ *  ・コマンドライン引数の値が全て数値かどうかのチェック
+ *  ・コマンドライン引数の符号が、「++」、「--」、「空欄+空欄」などのエラー対応
+ *  ・コマンドライン引数の値が、intの範囲かどうかのチェック
+ *  ・コマンドライン引数の値が、重複しているかのチェック
+ */
 
+/*
+ * コマンドライン引数の値がエラーでなかった場合に呼ばれる
+ * 引数の値の値をすべてfreeする
+ */
+static void	ft_error_all_free(char *check_str,
+	char **check_c, int *check_arr_num)
+{
+	free(check_str);
+	ft_free_str(check_c);
+	free(check_arr_num);
+}
+
+/*
+ * 引数の値が、「+」か「-」かどうかのチェック
+ */
 static char	ft_sing_check(char sing)
 {
 	if (ft_strchr("+-", sing) != NULL)
@@ -31,7 +47,11 @@ static char	ft_sing_check(char sing)
 	return ('+');
 }
 
-static int	ft_ismax(long check_num, char sign_flg)
+/*
+ * 引数の値が、intの範囲かどうかのチェック
+ * intの範囲外ならエラー
+ */
+static bool	ft_ismax(long check_num, char sign_flg)
 {
 	if (sign_flg == '+')
 	{
@@ -46,8 +66,11 @@ static int	ft_ismax(long check_num, char sign_flg)
 	return (false);
 }
 
-//intの範囲内でない
-static int	ft_is_out_scope(char **check_str)
+/*
+ * コマンドライン引数の値が、intの範囲かどうかのチェック
+ * intの範囲外ならエラー
+ */
+bool	ft_is_out_scope(char **check_str)
 {
 	size_t	i_;
 	size_t	j_;
@@ -74,6 +97,10 @@ static int	ft_is_out_scope(char **check_str)
 	return (false);
 }
 
+/*
+ * コマンドライン引数のエラーチェック
+ * エラーがあれば、エラーメッセージを表示しプログラム終了
+ */
 void	ft_error_check(int argc, char **argv)
 {
 	char	*check_str_;
@@ -102,30 +129,3 @@ void	ft_error_check(int argc, char **argv)
 	ft_error_all_free(check_str_, check_c_, check_arr_num_);
 	return ;
 }
-
-// int main(void){
-// 	char *argv[3] = {"3 +6 2 -5 1 +7 -4 10", "9 -12 +11  15 8 14 +13 2147483647","2147483646 -2147483648 -2147483647 0"};
-// 	// char *str[3] = {""};
-// 	int argc = 4;
-	
-// 	for(int i = 0; i < argc - 1; i++) {
-// 		ft_printf("str[%d] = %s\n", i, argv[i]);
-// 	}
-// 	//TODO:エラーの処理の戻り値はint*のため、構造体に格納し、座標圧縮へ行く
-// 	ft_iserror(argc, argv);
-// 	return (0);
-// }
-
-// int main(void){
-//	 char *str = {"3 +6 2 -5 1 +7 -4 10 9 -12 +11  15 8 14 +13 2147483647 2147483646 -2147483648 -2147483647 0"};
-//	 char **check_c_ = ft_split(str, ' ');
-
-//	 ft_printf("str = %s\n", str);
-//	 // if (ft_iserror(str))
-//	 if (ft_iserror(str))
-//	 {
-//		 ft_printf("error\n");
-//		 return (0);
-//	 }
-//	 return (0);
-// }

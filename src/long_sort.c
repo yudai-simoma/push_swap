@@ -6,30 +6,27 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:24:15 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/16 21:59:54 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:27:19 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-	// ・要素数 / 15で区切る
-	// ・(区切った個数 / 2) - 1 回分スタックAをrotateし比較する
-	// ・rotateする際、1回目は1 ~ 30の値を見る、1~15ならpush,rotate、16~30ならpush
-	// 	2回目は、31 ~ 45ならpush,rotate、46 ~ 60ならpushとしスタックBに15の範囲で
-	// 	区切った値を格納していく
-	// ・スタックAのrotateが終了したら、スタックBをrotate,revase_rotateをし比較する
-	// ・スタックBを比較する際は、スタックBに格納されている最大値を見つけ、
-	// 	見つけたらスタックAにpushm,フラグが0になるまでrevase=rotate
-	// 	、最大値 - 1を見つけたらスタックAにpush,rotate,フラグを1++
-	// ・上記をスタックBが空になるまで実行する
-	// ・
+/*
+ * 7個以上のソートアルゴリズム
+ * （例：要素数10個、区切る数3の場合。区切る数は要素数によって変動する）
+ * 	・スタックAが空になるまでスタックBにグループごとに移動させる
+ * 		・「7~9, 1~3, 4~6, 10」のように3個のグループにし、大小のグループを交互にさせる
+ * 	・スタックBが空になるまでスタックAに大きい順に戻す
+ * 		・一番初めは、10, 9 を探し10を見つけたら次は、9, 8を探す
+ * 		・仮に10, 9 を探し、9を見つけたら次は、10, 8を探す
+ * 	・スタックAに戻したら、ソートが完了している
+ */
 
 /*
-	8個に区切る
-	1~8を探す
-*/
-// 目的の値まで、rotateかreverse_rotateか判断する関数
+ * 目的の値まで、rotateかreverse_rotateか判断する関数（スタックBへ移動させるとき専用）
+ */
 bool	ft_move_b_check(t_ps_stack *ab_stack, int min, int max)
 {
 	size_t	i_;
@@ -52,7 +49,9 @@ bool	ft_move_b_check(t_ps_stack *ab_stack, int min, int max)
 		return (false);
 }
 
-// スタックをAからBへ移動させる関数
+/*
+ * スタックAからBへ移動させる関数
+ */
 void	ft_divide_and_move_b(t_ps_stack *ab_stack, t_move *move_b)
 {
 	size_t	i_;
@@ -91,6 +90,9 @@ void	ft_divide_and_move_b(t_ps_stack *ab_stack, t_move *move_b)
 	}
 }
 
+/*
+ * スタックBへ移動させたグループが、スタックAへ戻ったか判断する関数
+ */
 bool	ft_is_search_num(t_ps_stack *ab_stack, t_move *move_a
 	, size_t move_section_count)
 {
@@ -120,6 +122,9 @@ bool	ft_is_search_num(t_ps_stack *ab_stack, t_move *move_a
 	return (false);
 }
 
+/*
+ * 目的の値まで、rotateかreverse_rotateか判断する関数（スタックAへ戻すとき専用）
+ */
 bool	ft_move_a_check(t_ps_stack *ab_stack, int search_num)
 {
 	size_t	i_;
@@ -140,8 +145,10 @@ bool	ft_move_a_check(t_ps_stack *ab_stack, int search_num)
 		return (false);
 }
 
-//スタックをBからAへ移動する関数
 //TODO:無限ループに入ってる
+/*
+ * スタックをBからAへ戻す関数
+ */
 void	ft_ascending_move_a(t_ps_stack *ab_stack, t_move *move_a)
 {
 	size_t	move_section_count_;
@@ -195,6 +202,9 @@ void	ft_ascending_move_a(t_ps_stack *ab_stack, t_move *move_a)
 	}
 }
 
+/*
+ * 並び変える要素数が7個以上の場合のソートアルゴリズム
+ */
 void	ft_long_sort(t_ps_stack *ab_stack)
 {
 	t_move	move_;
@@ -220,8 +230,4 @@ void	ft_long_sort(t_ps_stack *ab_stack)
 }
 
 
-	// ft_stack_print(ab_stack);
-		// ft_printf("min = %d, max = %d\n", search_scope_min_, search_scope_max_);
-		// ft_printf("top = %d\n", a_top_);
-
-
+// ft_stack_print(ab_stack);

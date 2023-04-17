@@ -6,14 +6,17 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:42:26 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/13 22:01:58 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:23:06 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//引数が全てからか
-int	ft_isempty_pram(int argc, char **argv)
+/*
+ * コマンドライン引数の中に空文字だけの引数があるかどうかのチェック
+ * 空文字だけならエラー
+ */
+bool	ft_isempty_pram(int argc, char **argv)
 {
 	int		i_;
 	size_t	j_;
@@ -35,8 +38,11 @@ int	ft_isempty_pram(int argc, char **argv)
 	return (true);
 }
 
-//1つの引数の中に数値が一つもない
-int	ft_isnot_num_value(int argc, char **argv)
+/*
+ * コマンドライン引数の中に数値が一つもない引数があるかどうかのチェック
+ * 数値が一つもないならエラー
+ */
+bool	ft_isnot_num_value(int argc, char **argv)
 {
 	int		i_;
 	size_t	j_;
@@ -60,8 +66,11 @@ int	ft_isnot_num_value(int argc, char **argv)
 	return (false);
 }
 
-//整数でない
-int	ft_isnot_integer(char *check_str)
+/*
+ * コマンドライン引数の値が全て数値かどうかのチェック
+ * 文字があればエラー
+ */
+bool	ft_isnot_integer(char *check_str)
 {
 	size_t	i_;
 	char	c_;
@@ -77,8 +86,10 @@ int	ft_isnot_integer(char *check_str)
 	return (false);
 }
 
-//++, --のエラー処理の対応、空欄+空欄のエラー処理
-int	ft_is_sign_error(char *check_str)
+/*
+ * コマンドライン引数の符号が、「++」、「--」、「空欄+空欄」などのエラー対応
+ */
+bool	ft_is_sign_error(char *check_str)
 {
 	size_t	i_;
 
@@ -93,9 +104,11 @@ int	ft_is_sign_error(char *check_str)
 	return (false);
 }
 
-//重複している
-//TODO:ここではサイズを取得しているが、本来は構造体の中に入っている
-int	ft_is_duplicate(int *check_arr_num, int argc, char **argv)
+/*
+ * コマンドライン引数の値が、重複しているかのチェック
+ * 重複していたらエラー
+ */
+bool	ft_is_duplicate(int *check_arr_num, int argc, char **argv)
 {
 	size_t	i_;
 	size_t	j_;

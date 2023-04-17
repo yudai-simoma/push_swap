@@ -6,22 +6,16 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:41:18 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/16 19:22:46 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:27:00 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//ft_sort_size_3()関数に渡す引数を用意する関数
-void	set_sort_3_num(int *num, int *sort_3_num)
-{
-	sort_3_num[0] = num[0];
-	sort_3_num[1] = num[1];
-	sort_3_num[2] = num[2];
-	sort_3_num[3] = num[3];
-}
-
-//引数が3個以下をソートする関数
+/*
+ * 並び変える要素数が3個以下をソートする関数
+ * 1, 2, 3の値のみに使用可能
+ */
 void	ft_sort_size_3(t_ps_stack *ab_stack, int *cmprsd_arr_rv)
 {
 	if (cmprsd_arr_rv[1] == 1 && cmprsd_arr_rv[2] == 3)
@@ -42,7 +36,20 @@ void	ft_sort_size_3(t_ps_stack *ab_stack, int *cmprsd_arr_rv)
 	}
 }
 
-//int *の要素数が6個以下のソートアルゴリズム
+/*
+ * ft_sort_size_3()関数に渡す引数を用意する関数
+ */
+static void	set_sort_3_num(int *num, int *sort_3_num)
+{
+	sort_3_num[0] = num[0];
+	sort_3_num[1] = num[1];
+	sort_3_num[2] = num[2];
+	sort_3_num[3] = num[3];
+}
+
+/*
+ * 並び変える要素数が4~6個のソートアルゴリズム
+ */
 void	ft_sort_size_max_6(t_ps_stack *ab_stack,
 	int *cmprsd_arr_rv, int array_size)
 {
@@ -73,7 +80,9 @@ void	ft_sort_size_max_6(t_ps_stack *ab_stack,
 	}
 }
 
-//int *の要素数が6個以下の場合のソートアルゴリズム
+/*
+ * 並び変える要素数が6個以下の場合のソートアルゴリズム
+ */
 void	ft_min_sort(t_ps_stack *ab_stack)
 {
 	if (ab_stack->array_size == 2)

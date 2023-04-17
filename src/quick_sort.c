@@ -6,13 +6,15 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 19:32:35 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/12 10:22:46 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:25:56 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//クイックソートでのパーティション
+/*
+ * クイックソートでのパーティション
+ */
 static int	partition(int *sort_num, size_t point, size_t standard)
 {
 	size_t	i_;
@@ -32,7 +34,9 @@ static int	partition(int *sort_num, size_t point, size_t standard)
 	return (point);
 }
 
-//クイックソートで並べ替え
+/*
+ * クイックソートで昇順に並べ替え
+ */
 void	ft_quick_sort(int *sort_num, size_t point, size_t standard)
 {
 	size_t	next_p_;
