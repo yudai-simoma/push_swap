@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:09:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/17 20:14:05 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/18 20:11:45 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void	ft_long_sort(t_ps_stack *ab_stack);
 void	ft_ascending_move_a(t_ps_stack *ab_stack, t_move *move_a);
 //min_sort.c
 void	ft_min_sort(t_ps_stack *ab_stack);
+//min_sort_utils.c
+void	ft_sort_size_max_6(t_ps_stack *ab_stack);
 
 //TODO:後削除
 void	ft_stack_print(t_ps_stack *ab_stack_);

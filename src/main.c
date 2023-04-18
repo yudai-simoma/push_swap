@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:11:00 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/17 21:31:46 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:05:17 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,24 +97,18 @@ void	ft_set_array(t_ps_stack *ab_stack, int argc, char **argv)
 void	ft_is_sorted(t_ps_stack *ab_stack)
 {
 	size_t	i_;
-	size_t	flg_;
 
-	i_ = ab_stack->ab_flg - 1;
-	flg_ = 0;
-	while (i_)
+	i_ = 0;
+	while (i_ < ab_stack->array_size - 1)
 	{
-		if (ab_stack->cmprsd_arr_rv[i_] > ab_stack->cmprsd_arr_rv[i_ - 1])
-			flg_++;
-		i_--;
+		if (ab_stack->param_array[i_] > ab_stack->param_array[i_ + 1])
+			return ;
+		i_++;
 	}
-	if (flg_ == (ab_stack->array_size - 1))
-	{
-		free(ab_stack->param_array);
-		free(ab_stack->sort_array);
-		free(ab_stack->cmprsd_arr_rv);
-		exit(1);
-	}
-	return ;
+	free(ab_stack->param_array);
+	free(ab_stack->sort_array);
+	free(ab_stack->cmprsd_arr_rv);
+	exit(1);
 }
 
 /*
@@ -153,7 +147,7 @@ void	ft_is_sorted(t_ps_stack *ab_stack)
 int main(int argc, char **argv) {
 #else
 int	main(void){
-	char *argv[2] = {"./push_swap", "1 2"};
+	char *argv[2] = {"./push_swap", "3 2 4 1 5"};
 	int argc = 2;
 #endif
 	t_ps_stack	ab_stack_;
