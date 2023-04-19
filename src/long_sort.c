@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:24:15 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/19 18:27:18 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:47:15 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 /*
  * 目的の値まで、rotateかreverse_rotateか判断する関数（スタックBへ移動させるとき専用）
  */
-bool	ft_move_b_check(t_ps_stack *ab_stack, int min, int max)
+static bool	ft_move_b_check(t_ps_stack *ab_stack, int min, int max)
 {
 	size_t	i_;
 	size_t	rotate_count_;
@@ -52,7 +52,7 @@ bool	ft_move_b_check(t_ps_stack *ab_stack, int min, int max)
 /*
  * スタックAからBへ移動させる関数の続き
  */
-void	ft_move_b_judge(t_ps_stack *ab_stack, t_move *move_b)
+static void	ft_move_b_judge(t_ps_stack *ab_stack, t_move *move_b)
 {
 	move_b->top_num = ab_stack->cmprsd_arr_rv[ab_stack->ab_flg];
 	if (move_b->top_num >= move_b->search_num && move_b->top_num
@@ -77,7 +77,7 @@ void	ft_move_b_judge(t_ps_stack *ab_stack, t_move *move_b)
 /*
  * スタックAからBへ移動させる関数
  */
-void	ft_divide_and_move_b(t_ps_stack *ab_stack, t_move *move_b)
+static void	ft_divide_and_move_b(t_ps_stack *ab_stack, t_move *move_b)
 {
 	size_t	i_;
 	size_t	stack_a_size;

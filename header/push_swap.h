@@ -6,16 +6,14 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:09:16 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/18 20:11:45 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:49:47 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft.h"
-# include <stdio.h>
 # include <limits.h>
-# include <stdlib.h>
 # include <stdbool.h>
 # ifndef COMP_DEF_FLAG
 #  define COMP_DEF_FLAG 1
