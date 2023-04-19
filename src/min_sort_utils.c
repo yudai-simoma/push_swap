@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 19:59:51 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/18 21:04:46 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:57:50 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,32 +109,3 @@ void	ft_sort_size_max_6(t_ps_stack *ab_stack)
 	while (ft_stack_b_size(ab_stack) != 0)
 		ft_push_a(ab_stack);
 }
-
-
-// /*
-//  * 並び変える要素数が4~6個のソートアルゴリズム
-//  */
-// void	ft_sort_size_max_6(t_ps_stack *ab_stack)
-// {
-// 	int	a_top_;
-// 	int	search_num_;
-
-// 	search_num_ = 1;
-// 	while (ft_stack_b_size(ab_stack) != 3)
-// 	{
-// 		a_top_ = ab_stack->cmprsd_arr_rv[ab_stack->ab_flg];
-// 		if (a_top_ >= 1 && )
-// 		{
-// 			ft_push_b(ab_stack);
-// 			search_num_++;
-// 		}
-// 		else if (ft_rotate_or_reverse_rotate_check(ab_stack, search_num_))
-// 			ft_rotate_a(ab_stack);
-// 		else
-// 			ft_reverse_rotate_a(ab_stack);
-// 	}
-// 	ft_sort_4_to_6(ab_stack);
-// 	while (ft_stack_b_size(ab_stack) != 0)
-// 		ft_push_a(ab_stack);
-// }
-
