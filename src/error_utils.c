@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:42:26 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/17 18:23:06 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:20:25 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ bool	ft_isnot_integer(char *check_str)
 }
 
 /*
- * コマンドライン引数の符号が、「++」、「--」、「空欄+空欄」などのエラー対応
+ * コマンドライン引数の符号が、「++」、「--」、「空欄+空欄」、「1+2」などのエラー対応
  */
 bool	ft_is_sign_error(char *check_str)
 {
@@ -98,6 +98,10 @@ bool	ft_is_sign_error(char *check_str)
 	{
 		if (ft_strchr("+-", check_str[i_]) != NULL
 			&& !ft_isdigit(check_str[i_ + 1]))
+			return (true);
+		if ((ft_isdigit(check_str[i_]))
+			&& (!ft_isdigit(check_str[i_ + 1])
+				&& ft_strchr(" \0", check_str[i_ + 1]) == NULL))
 			return (true);
 		i_++;
 	}
