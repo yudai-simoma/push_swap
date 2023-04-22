@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:11:00 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/18 21:05:17 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/22 22:32:17 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_set_array(t_ps_stack *ab_stack, int argc, char **argv)
 		free(ab_stack->param_array);
 		ft_put_error_exit();
 	}
-	ab_stack->cmprsd_arr_rv = malloc(sizeof(int) * ab_stack->array_size + 1);
+	ab_stack->cmprsd_arr_rv = malloc(sizeof(int) * (ab_stack->array_size + 1));
 	if (ab_stack->cmprsd_arr_rv == NULL)
 	{
 		free(ab_stack->param_array);
