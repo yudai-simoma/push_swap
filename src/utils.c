@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:34:36 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/17 18:24:54 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/23 13:09:07 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	*ft_set_arr_num(char **str)
 	while (str[i_] != NULL)
 		i_++;
 	arr_num_ = (int *)malloc(sizeof(int) * i_);
+	if (arr_num_ == NULL)
+		return (NULL);
 	i_ = 0;
 	while (str[i_] != NULL)
 	{
