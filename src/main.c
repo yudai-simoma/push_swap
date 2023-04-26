@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:11:00 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/04/22 22:32:17 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:36:13 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void	ft_set_array(t_ps_stack *ab_stack, int argc, char **argv)
  * 受け取った引数が昇順に並んでいるかチェック
  * 昇順に並んでいたらfreeをし、プログラム終了
  */
-//TODO:ソートプログラムが間違っている
 void	ft_is_sorted(t_ps_stack *ab_stack)
 {
 	size_t	i_;
